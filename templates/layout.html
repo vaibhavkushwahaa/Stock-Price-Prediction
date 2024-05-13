@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>StockSurge</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="/static/img/icon.png" rel="icon" />
+    <link href="/static/img/icon.png" rel="icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="/static/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/static/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/static/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="/static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="/static/vendor/aos/aos.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="/static/css/main.css" rel="stylesheet" />
+
+      <!-- Bootstrap CSS -->
+      <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+      <!-- Font Awesome CSS -->
+      <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+      <!-- Style CSS -->
+      <link rel="stylesheet" href="/static/css/style.css">
+  </head>
+
+  <body class="index-page" data-bs-spy="scroll" data-bs-target="#navmenu">
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+      <div
+        class="container-fluid d-flex align-items-center justify-content-between"
+      >
+        <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
+          <h1>StockSurge</h1>
+        </a>
+
+        <!-- Nav Menu -->
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="/" class="active">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li class="dropdown has-dropdown">
+              <a href="#"
+                ><span>News</span> <i class="bi bi-chevron-down"></i
+              ></a>
+              <ul class="dd-box-shadow">
+                <li><a href="/news/india">India</a></li>
+                <li><a href="/news/world">World</a></li>
+                <li><a href="/news/business">Business</a></li>
+                <li><a href="/news/economy">Economy</a></li>
+              </ul>
+            </li>
+            <li><a href="/stocks">Stocks</a></li>
+            <li><a href="/prediction">Predictions</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+        <!-- End Nav Menu -->
+
+        <a class="btn-getstarted" href="/register">Get Started</a>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    {% block body %} {% endblock %}
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="container footer-top">
+        <div class="row gy-4">
+          <div class="col-lg-7 col-md-12 footer-about">
+            <a href="/" class="logo d-flex align-items-center">
+              <span>StockSurge</span>
+            </a>
+            <p>
+              Trading carries risks, and our insights are not guaranteed to
+              result in profits or prevent losses. The information provided
+              reflects the opinions of our research team. StockSurge is not
+              liable for any trading losses incurred from using our data,
+              quotes, or signals. Please understand the risks before investing.
+            </p>
+
+            <div class="social-links d-flex mt-4">
+              <a href=""><i class="bi bi-twitter"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">News</a></li>
+              <li><a href="#">Stocks</a></li>
+              <li><a href="#">Predictions</a></li>
+              <li><a href="#">Performance</a></li>
+            </ul>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-12 footer-contact text-center text-md-start"
+          >
+            <h4>Contact Us</h4>
+            <p>Omaxe Residency 1</p>
+            <p>Lucknow,Uttar Pradesh 226002</p>
+            <p>India</p>
+            <p class="mt-4">
+              <strong>Phone:</strong> <span>+91 95555 08008</span>
+            </p>
+            <p><strong>Email:</strong> <span>contact@StockSurge.com</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container copyright text-center mt-4">
+        <p>
+          &copy; <span>Copyright</span>
+          <strong class="px-1">StockSurge</strong>
+          <span>All Rights Reserved</span>
+        </p>
+        <div class="credits">Designed by <a href="">Vaibhav Kushwaha</a></div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+  </body>
+</html>
