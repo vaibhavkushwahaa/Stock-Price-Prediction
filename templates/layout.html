@@ -39,12 +39,18 @@
     <!-- Template Main CSS File -->
     <link href="/static/css/main.css" rel="stylesheet" />
 
-      <!-- Bootstrap CSS -->
-      <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
-      <!-- Font Awesome CSS -->
-      <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
-      <!-- Style CSS -->
-      <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css"
+    />
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    />
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/static/css/style.css" />
   </head>
 
   <body class="index-page" data-bs-spy="scroll" data-bs-target="#navmenu">
@@ -62,6 +68,7 @@
           <ul>
             <li><a href="/" class="active">Home</a></li>
             <li><a href="/about">About</a></li>
+
             <li class="dropdown has-dropdown">
               <a href="#"
                 ><span>News</span> <i class="bi bi-chevron-down"></i
@@ -74,15 +81,26 @@
               </ul>
             </li>
             <li><a href="/stocks">Stocks</a></li>
+            {% if session.isauth %}
+            <li><a href="/favs">Favorite</a></li>
+            {% endif %}
+
+            {% if session.isauth %}
             <li><a href="/prediction">Predictions</a></li>
+            {% endif %}
+
             <li><a href="/contact">Contact</a></li>
           </ul>
 
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
         <!-- End Nav Menu -->
+        {% if session.isauth %}
+        <a class="btn-getstarted" href="/logout">logout</a>
 
+        {% else %}
         <a class="btn-getstarted" href="/register">Get Started</a>
+        {% endif %}
       </div>
     </header>
     <!-- End Header -->

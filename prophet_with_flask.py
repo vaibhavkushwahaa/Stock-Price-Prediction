@@ -9,6 +9,8 @@ from prophet.plot import plot_plotly
 from sklearn.metrics import mean_absolute_error
 import plotly.graph_objects as go
 from newsapi import NewsApiClient
+import mpld3
+import ta
 
 app = Flask(__name__)
 STOCK_SYMBOLS = {
@@ -44,7 +46,7 @@ def index():
     return render_template('index.html', stock_symbols=STOCK_SYMBOLS)
 
 def yahoo_stocks(stock_symbol):
-    stock_data = yf.download(stock_symbol, period='1y', interval='1d')
+    stock_data = yf.download(stock_symbol, period='5y', interval='1d')
     stock_data = stock_data.reset_index()
     
     if 'Date' in stock_data.columns and 'Adj Close' in stock_data.columns:
@@ -66,6 +68,11 @@ def get_stock_info(stock_symbol):
     stock_data = yf.Ticker(stock_symbol)
     stock_info = stock_data.info
     return stock_info
+
+def get_metadata(stock_symbol):
+    stock_data = yf.Ticker(stock_symbol)
+    stock_metadata= stock_data.history_metadata
+    return stock_metadata
 
 def get_stock_news(stock_symbol):
     newsapi = NewsApiClient(api_key='476a461dcd964f0b8d1da096ebbebd7e')
@@ -127,7 +134,7 @@ def future_prediction(df_whole):
     forecast = model_2.predict(future)
     fig = plot_plotly(model_2, forecast)
     fig.update_xaxes(rangeslider_visible=False)
-    forecast_table = forecast[['ds','yhat','yhat_lower','yhat_upper']].tail().to_html()
+    forecast_table = forecast[['ds','yhat','yhat_lower','yhat_upper']].tail().to_html(classes='table table-striped table-bordered table-hover table-sm')
     return fig.to_html(full_html=False), forecast_table
 
 def plot_moving_average(df_whole, window_size=20):
@@ -143,6 +150,47 @@ def plot_moving_average(df_whole, window_size=20):
         xaxis_rangeslider_visible=False
     )
     return fig.to_html(full_html=False)
+
+def plot_components(df_whole):
+    model = Prophet()
+    model.fit(df_whole)
+    future = model.make_future_dataframe(365)
+    forecast = model.predict(future)
+    fig = model.plot_components(forecast)
+    return mpld3.fig_to_html(fig)
+
+
+import plotly.graph_objects as go  
+
+def plot_technical_indicators(df_whole):
+    df = pd.DataFrame(df_whole['Close'])
+    print(df)
+    df.columns = ['Close']
+
+    # Calculate technical indicators
+    df['SMA_20'] = ta.trend.sma_indicator(df['Close'], window=20)
+    df['EMA_50'] = ta.trend.ema_indicator(df['Close'], window=50)
+    df['RSI_14'] = ta.momentum.rsi(df['Close'], window=14)
+    df['MACD'] = ta.trend.macd_diff(df['Close'])
+
+    # plotly version
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=df.index, y=df['Close'], mode='lines', name='Close Price'))
+    
+    fig.update_layout(
+        xaxis_title='Date',
+        yaxis_title=f'Price ({df_whole["Close"].iloc[0]})',
+        xaxis_rangeslider_visible=False
+    )
+    # save to html
+    fig.write_html("technical_indicators.html")
+    technical_indicators_html = fig.to_html(full_html=False)
+    return technical_indicators_html
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
